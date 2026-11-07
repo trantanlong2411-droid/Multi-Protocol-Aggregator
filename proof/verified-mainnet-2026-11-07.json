@@ -1,0 +1,59 @@
+{
+  "schema": "pharos-multi-protocol-mainnet-verification-v1",
+  "checkedAtUtc": "2026-11-07T07:51:29.848Z",
+  "sourceRuns": {
+    "unitAndLive": "https://github.com/trantanlong2411-droid/Multi-Protocol-Aggregator/actions/runs/42352976955",
+    "production": "https://github.com/trantanlong2411-droid/Multi-Protocol-Aggregator/actions/runs/42352976822"
+  },
+  "network": "Pharos Mainnet",
+  "chainId": 1672,
+  "hostedMcp": "https://mcp.pharos.xyz/mcp",
+  "workerUrl": "https://multi-protocol-aggregator.trantanlong2411.workers.dev/",
+  "asOfBlock": 22357791,
+  "verifiedVenues": [
+    {
+      "id": "r25",
+      "protocol": "R25",
+      "contract": "0x1c2bc8b553d9a7e61f7531a3a4bf2162f4569268",
+      "state": "AVAILABLE",
+      "apyPct": 5.048,
+      "apyType": "annualized historical share-price comparison, may not predict future yield",
+      "totalAssetsUSDC": "2036253.159314"
+    },
+    {
+      "id": "zona",
+      "protocol": "Zona",
+      "contract": "0xda464e68208A3083Eb65FE5c522a72AeD1C1372a",
+      "state": "AVAILABLE",
+      "apyPct": 0,
+      "apyType": "current USDC reserve supply rate, variable and not guaranteed",
+      "totalAssetsUSDC": "529.300503"
+    }
+  ],
+  "routing": {
+    "selected": "r25",
+    "reason": "Higher verified yield after 1.5 pp illiquidity penalty; explicitly a demonstration heuristic"
+  },
+  "failover": {
+    "method": "explicit labeled simulated Zona unavailability",
+    "zona": "simulated-unavailable",
+    "r25": "available",
+    "selected": "r25",
+    "otherProtocolContinues": true
+  },
+  "actions": {
+    "unitTested": [
+      "exact amount validation",
+      "allowance checks",
+      "unsigned USDC approval",
+      "unsigned Zona supply",
+      "unsigned Zona withdraw with preflight",
+      "R25 maxWithdraw refusal",
+      "no broadcast"
+    ],
+    "productionSignedTransaction": false,
+    "productionBroadcast": false,
+    "productionDepositOrWithdrawReceipt": false
+  },
+  "notes": "Verified contract reads in live MCP and deployed Worker. No user wallet funded or connected. Real actions are PREPARED only as unsigned calldata, not executed or mined. Protocol yield estimates may change, R25 withdraw queues apply."
+}
