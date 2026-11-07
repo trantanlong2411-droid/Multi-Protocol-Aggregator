@@ -57,7 +57,7 @@ export function aprRayToApy(ray){
  const apr=n/1e27;
  if(!Number.isFinite(apr)||apr<0||apr>10)throw Error('Unreasonable Aave liquidity rate');
  const seconds=31536000;
- return Number(((Math.expm1(seconds*Math.log1p(apr/seconds)))*100)).toFixed(4));
+ return Number((Math.expm1(seconds*Math.log1p(apr/seconds))*100).toFixed(4));
 }
 async function scanR25(cli,wallet,blockNum){
  const v=VENUES.r25;
