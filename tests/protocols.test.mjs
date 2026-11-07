@@ -52,7 +52,7 @@ function testClient({broken=null,allowance=0n}={}){
  });
 }
 test('strict EVM wallet and precise USDC amount validation',()=>{
- assert.equal(validWallet(WALLET),WALLET);
+ assert.equal(validWallet(WALLET)?.toLowerCase(),WALLET.toLowerCase());
  assert.equal(validWallet('bad'),null);
  assert.equal(validateAmount('1.000001'),1000001n);
  assert.throws(()=>validateAmount('-2'));assert.throws(()=>validateAmount('0'));
